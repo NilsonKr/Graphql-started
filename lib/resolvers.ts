@@ -1,4 +1,4 @@
-const tweets = [
+const tweets: Ttweet[] = [
 	{
 		_id: '1',
 		author: 'NilsonKr',
@@ -20,8 +20,15 @@ const tweets = [
 ];
 
 const resolvers = {
-	getTweets: () => tweets,
-	getQuantityTweets: () => tweets.length,
+	Query: {
+		getTweets: () => tweets,
+		getQuantityTweets: () => tweets.length,
+		getSingleTweet: (_: any, args: any) => {
+			const tweet = tweets.find(twt => twt._id === args.id);
+
+			return tweet;
+		},
+	},
 };
 
 export default resolvers;

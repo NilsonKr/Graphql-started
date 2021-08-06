@@ -8,4 +8,5 @@ type Tweet {
 type Query {
 	getTweets: [Tweet]
 	getQuantityTweets: Int
+	getSingleTweet(id: ID): Tweet
 }

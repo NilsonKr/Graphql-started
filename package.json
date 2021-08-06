@@ -8,6 +8,7 @@
 		"express": "^4.17.1",
 		"express-graphql": "^0.12.0",
 		"graphql": "^15.5.1",
+		"graphql-tools": "^8.1.0",
 		"typescript": "^4.3.5"
 	},
 	"devDependencies": {
