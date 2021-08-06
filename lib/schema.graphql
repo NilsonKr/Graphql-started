@@ -1,0 +1,11 @@
+type Tweet {
+	_id: ID
+	author: String
+	content: String
+	date: String
+}
+
+type Query {
+	getTweets: [Tweet]
+	getQuantityTweets: Int
+}
