@@ -24,4 +24,4 @@ const resolvers = {
 	getQuantityTweets: () => tweets.length,
 };
 
-module.exports = resolvers;
+export default resolvers;

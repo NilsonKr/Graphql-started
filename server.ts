@@ -1,8 +1,8 @@
-const { buildSchema } = require('graphql');
-const { graphqlHTTP } = require('express-graphql');
+import { buildSchema } from 'graphql';
+import { graphqlHTTP } from 'express-graphql';
+import resolvers from './lib/resolvers';
 const fs = require('fs');
 const path = require('path');
-const resolvers = require('./lib/resolvers');
 
 const app = require('express')();
 
