@@ -1,35 +1,26 @@
 import { IResolvers } from '@graphql-tools/utils';
+import MongoLib from '../lib/mongoDb';
 
-const tweets: Ttweet[] = [
-	{
-		_id: '1',
-		author: 'NilsonKr',
-		content: 'Something...',
-		date: new Date().toDateString(),
-	},
-	{
-		_id: '2',
-		author: 'OtherUser',
-		content: 'Something...',
-		date: new Date().toDateString(),
-	},
-	{
-		_id: '3',
-		author: 'OtherOtherUser',
-		content: 'Something...',
-		date: new Date().toDateString(),
-	},
-];
+const db = new MongoLib();
 
 const resolvers: IResolvers = {
 	Query: {
-		getTweets: () => tweets,
-		getQuantityTweets: () => tweets.length,
-		getSingleTweet: (_: any, args: any) => {
-			const tweet = tweets.find(twt => twt._id === args.id);
+		getTweets: async () => {
+			try {
+				const result = await db.getAll('tweets');
 
-			return tweet;
+				return result;
+			} catch (error) {
+				console.log(error);
+				return error;
+			}
 		},
+		// getQuantityTweets: () => tweets.length,
+		// getSingleTweet: (_: any, args: any) => {
+		// 	const tweet = tweets.find(twt => twt._id === args.id);
+
+		// 	return tweet;
+		// },
 	},
 };
 

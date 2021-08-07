@@ -3,10 +3,10 @@ import config from '../config/config';
 
 const mongoUri = `mongodb+srv://${config.dbUser}:${config.dbPswd}@${config.dbCluster}/${config.dbName}?retryWrites=true&w=majority`;
 
-class MongoLib {
+class MongoLib implements IMongoLib {
+	static connection: Promise<Db> | null = null;
 	dbName: string;
 	client: MongoClient;
-	static connection: Promise<Db> | null = null;
 
 	constructor() {
 		this.client = new MongoClient(mongoUri);
@@ -27,6 +27,18 @@ class MongoLib {
 		}
 
 		return MongoLib.connection;
+	}
+
+	getAll(collection: string, query: any = {}) {
+		return this.connect().then((db: Db) => {
+			return db.collection(collection).find(query).toArray();
+		});
+	}
+
+	createMany(collection: string, data: any[]) {
+		return this.connect().then((db: Db) => {
+			return db.collection(collection).insertMany(data);
+		});
 	}
 }
 
