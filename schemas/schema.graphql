@@ -5,8 +5,18 @@ type Tweet {
 	date: String
 }
 
+input TweetInput {
+	author: String!
+	content: String!
+	date: String
+}
+
 type Query {
 	getTweets: [Tweet]
 	getQuantityTweets: Int
 	getSingleTweet(id: ID): Tweet
+}
+
+type Mutation {
+	createTweet(newTweet: TweetInput): ID
 }

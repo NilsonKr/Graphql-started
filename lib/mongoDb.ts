@@ -1,4 +1,4 @@
-import { Db, MongoClient } from 'mongodb';
+import { Db, MongoClient, ObjectId, Document, InsertOneResult } from 'mongodb';
 import config from '../config/config';
 
 const mongoUri = `mongodb+srv://${config.dbUser}:${config.dbPswd}@${config.dbCluster}/${config.dbName}?retryWrites=true&w=majority`;
@@ -35,10 +35,24 @@ class MongoLib implements IMongoLib {
 		});
 	}
 
+	getOne(collection: string, id: string) {
+		return this.connect().then((db: Db) => {
+			return db.collection(collection).findOne({ _id: new ObjectId(id) });
+		});
+	}
+
 	createMany(collection: string, data: any[]) {
 		return this.connect().then((db: Db) => {
 			return db.collection(collection).insertMany(data);
 		});
+	}
+
+	createOne(collection: string, data: Ttweet) {
+		return this.connect()
+			.then((db: Db) => {
+				return db.collection(collection).insertOne(data as Document);
+			})
+			.then((result: InsertOneResult) => result.insertedId);
 	}
 }
 

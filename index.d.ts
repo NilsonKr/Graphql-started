@@ -1,7 +1,5 @@
 interface IMongoLib {
 	connect: () => Promise<Db>;
-	createMany: (collection: string, data: any[]) => any;
-	getAll: (collection: string, query: any) => any;
 	client: MongoClient;
 	dbName: string;
 }
