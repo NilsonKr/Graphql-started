@@ -1,3 +1,5 @@
+import { IResolvers } from '@graphql-tools/utils';
+
 const tweets: Ttweet[] = [
 	{
 		_id: '1',
@@ -19,7 +21,7 @@ const tweets: Ttweet[] = [
 	},
 ];
 
-const resolvers = {
+const resolvers: IResolvers = {
 	Query: {
 		getTweets: () => tweets,
 		getQuantityTweets: () => tweets.length,
