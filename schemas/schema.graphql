@@ -5,18 +5,44 @@ type Tweet {
 	date: String
 }
 
+type User {
+	_id: ID
+	name: String!
+	username: String!
+	description: String
+	status: String
+}
+
 input TweetInput {
 	author: String!
 	content: String!
 	date: String
 }
 
+input UserInput {
+	name: String!
+	username: String!
+	description: String
+	status: String
+}
+
+input UserEditInput {
+	name: String
+	username: String
+	description: String
+	status: String
+}
+
 type Query {
 	getTweets: [Tweet]
 	getQuantityTweets: Int
 	getSingleTweet(id: ID): Tweet
+	getUser(id: ID): User
 }
 
 type Mutation {
 	createTweet(newTweet: TweetInput): ID
+	removeTweet(id: ID): Tweet
+	createUser(newUser: UserInput): ID
+	updateUser(newData: UserEditInput, id: ID): User
 }

@@ -33,6 +33,16 @@ const resolvers = {
 			return error;
 		}
 	},
+	getUser: async (_: any, args: any) => {
+		try {
+			const result = await db.getOne('users', args.id);
+
+			return result;
+		} catch (error) {
+			console.log(error);
+			return error;
+		}
+	},
 };
 
 export default resolvers;

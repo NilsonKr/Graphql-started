@@ -47,12 +47,28 @@ class MongoLib implements IMongoLib {
 		});
 	}
 
-	createOne(collection: string, data: Ttweet) {
+	createOne(collection: string, data: any) {
 		return this.connect()
 			.then((db: Db) => {
 				return db.collection(collection).insertOne(data as Document);
 			})
 			.then((result: InsertOneResult) => result.insertedId);
+	}
+	updateOne(collection: string, data: any, id: string) {
+		return this.connect().then((db: Db) => {
+			return db
+				.collection(collection)
+				.findOneAndUpdate(
+					{ _id: new ObjectId(id) },
+					{ $set: data },
+					{ returnDocument: 'after' }
+				);
+		});
+	}
+	removeOne(collection: string, id: string) {
+		return this.connect().then((db: Db) => {
+			return db.collection(collection).findOneAndDelete({ _id: new ObjectId(id) });
+		});
 	}
 }
 

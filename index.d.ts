@@ -10,3 +10,11 @@ interface Ttweet {
 	content: string;
 	date: string;
 }
+
+interface User {
+	_id?: string;
+	name: string;
+	username: string;
+	description: string;
+	status: string;
+}
