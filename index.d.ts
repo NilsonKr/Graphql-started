@@ -12,10 +12,11 @@ interface Ttweet {
 	likes: Array<string | void>;
 }
 
-interface User {
+interface TUser {
 	_id?: string;
 	name: string;
 	username: string;
 	description: string;
-	status: string;
+	status?: string;
+	company?: string;
 }

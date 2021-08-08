@@ -33,7 +33,7 @@ const resolvers = {
 			return error;
 		}
 	},
-	getUser: async (_: any, args: any) => {
+	getAccount: async (_: any, args: any) => {
 		try {
 			const result = await db.getOne('users', args.id);
 

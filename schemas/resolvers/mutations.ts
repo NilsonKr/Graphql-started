@@ -42,9 +42,9 @@ const mutations = {
 			return error;
 		}
 	},
-	createUser: async (_: any, args: any) => {
-		const defaultFields = { status: '👾', description: "Hey! What's up" };
-		const data = Object.assign(defaultFields, args.newUser);
+	createAccount: async (_: any, args: any) => {
+		const defaultFields = { description: "Hey! What's up" };
+		const data = Object.assign(defaultFields, args.newAccount);
 
 		try {
 			const result = await db.createOne('users', data);
@@ -55,7 +55,7 @@ const mutations = {
 			return error;
 		}
 	},
-	updateUser: async (_: any, args: any) => {
+	updateAccount: async (_: any, args: any) => {
 		try {
 			const result = await db.updateOne('users', args.newData, args.id, '$set');
 

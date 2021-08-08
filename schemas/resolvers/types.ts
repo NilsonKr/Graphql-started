@@ -15,6 +15,15 @@ const types = {
 			}
 		},
 	},
+	Account: {
+		__resolveType: (account: TUser) => {
+			if (account.company) {
+				return 'Company';
+			} else {
+				return 'User';
+			}
+		},
+	},
 };
 
 export default types;
