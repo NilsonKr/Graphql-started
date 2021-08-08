@@ -1,4 +1,5 @@
 import MongoLib from '../../lib/mongoDb';
+import { ObjectId } from 'mongodb';
 
 const db = new MongoLib();
 
@@ -19,7 +20,7 @@ const mutations = {
 		try {
 			const result = await db.updateOne(
 				'tweets',
-				{ likes: args.newLike },
+				{ likes: new ObjectId(args.newLike) },
 				args.tweetId,
 				'$addToSet'
 			);

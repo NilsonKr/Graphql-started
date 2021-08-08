@@ -3,7 +3,7 @@ type Tweet {
 	author: String
 	content: String
 	date: String
-	likes: [ID]
+	likes: [User]
 }
 
 type User {
