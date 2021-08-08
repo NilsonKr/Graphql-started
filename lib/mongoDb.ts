@@ -54,13 +54,13 @@ class MongoLib implements IMongoLib {
 			})
 			.then((result: InsertOneResult) => result.insertedId);
 	}
-	updateOne(collection: string, data: any, id: string) {
+	updateOne(collection: string, data: any, id: string, operation: string) {
 		return this.connect().then((db: Db) => {
 			return db
 				.collection(collection)
 				.findOneAndUpdate(
 					{ _id: new ObjectId(id) },
-					{ $set: data },
+					{ [operation]: data },
 					{ returnDocument: 'after' }
 				);
 		});

@@ -9,6 +9,7 @@ interface Ttweet {
 	author: string;
 	content: string;
 	date: string;
+	likes: Array<string | void>;
 }
 
 interface User {

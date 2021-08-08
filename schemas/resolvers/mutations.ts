@@ -15,7 +15,22 @@ const mutations = {
 			return error;
 		}
 	},
+	updateLikes: async (_: any, args: any) => {
+		try {
+			const result = await db.updateOne(
+				'tweets',
+				{ likes: args.newLike },
+				args.tweetId,
+				'$addToSet'
+			);
+			console.log(result);
 
+			return result.value;
+		} catch (error) {
+			console.log(error);
+			return error;
+		}
+	},
 	removeTweet: async (_: any, args: any) => {
 		try {
 			const result = await db.removeOne('tweets', args.id);
@@ -41,7 +56,7 @@ const mutations = {
 	},
 	updateUser: async (_: any, args: any) => {
 		try {
-			const result = await db.updateOne('users', args.newData, args.id);
+			const result = await db.updateOne('users', args.newData, args.id, '$set');
 
 			return result.value;
 		} catch (error) {

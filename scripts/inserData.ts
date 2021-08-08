@@ -5,16 +5,19 @@ const tweets: Ttweet[] = [
 		author: 'NilsonKr',
 		content: 'Something...',
 		date: new Date().toDateString(),
+		likes: [],
 	},
 	{
 		author: 'OtherUser',
 		content: 'Something...',
 		date: new Date().toDateString(),
+		likes: [],
 	},
 	{
 		author: 'OtherOtherUser',
 		content: 'Something...',
 		date: new Date().toDateString(),
+		likes: [],
 	},
 ];
 

@@ -3,6 +3,7 @@ type Tweet {
 	author: String
 	content: String
 	date: String
+	likes: [ID]
 }
 
 type User {
@@ -42,6 +43,7 @@ type Query {
 
 type Mutation {
 	createTweet(newTweet: TweetInput): ID
+	updateLikes(newLike: ID, tweetId: ID): Tweet
 	removeTweet(id: ID): Tweet
 	createUser(newUser: UserInput): ID
 	updateUser(newData: UserEditInput, id: ID): User
