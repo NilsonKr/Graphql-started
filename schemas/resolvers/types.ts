@@ -24,6 +24,19 @@ const types = {
 			}
 		},
 	},
+	GlobalSearch: {
+		__resolveType: (type: any) => {
+			if (type.author) {
+				return 'Tweet';
+			}
+
+			if (type.company) {
+				return 'Company';
+			}
+
+			return 'User';
+		},
+	},
 };
 
 export default types;

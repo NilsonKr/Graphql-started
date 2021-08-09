@@ -43,6 +43,20 @@ const resolvers = {
 			return error;
 		}
 	},
+	globalSearch: async (_: any, args: any) => {
+		try {
+			const resultUsers = await db.getAll('users', { $text: { $search: args.keyword } });
+			const resultTweets = await db.getAll('tweets', {
+				$text: { $search: args.keyword },
+			});
+			const resultAll = [...resultUsers, ...resultTweets];
+
+			return resultAll;
+		} catch (error) {
+			console.log(error);
+			return error;
+		}
+	},
 };
 
 export default resolvers;

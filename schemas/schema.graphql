@@ -1,3 +1,5 @@
+union GlobalSearch = Tweet | Company | User
+
 type Tweet {
 	_id: ID
 	author: String
@@ -56,6 +58,7 @@ type Query {
 	getQuantityTweets: Int
 	getSingleTweet(id: ID): Tweet
 	getAccount(id: ID): Account
+	globalSearch(keyword: String): [GlobalSearch]
 }
 
 type Mutation {
